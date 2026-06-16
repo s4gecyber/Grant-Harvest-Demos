@@ -1,0 +1,15 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor / tooling
+.claude/
+.vscode/
+*.swp
+
+# Node / Vercel (if the live API gets deployed from here)
+node_modules/
+.vercel/
+.env
+.env.*

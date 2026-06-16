@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grant Estimator — How Much Can Your Farm Get? | GrantHarvest</title>
+  <meta name="description" content="Find out how much grant funding your agricultural business could receive. Free calculator covering 25+ USDA and state programs. Powered by GrantHarvest.">
+  <meta property="og:title" content="Farm Grant Estimator — GrantHarvest">
+  <meta property="og:description" content="There's $6 billion in agricultural grants out there. Find out how much your farm could get.">
+  <meta property="og:type" content="website">
+
+  <!-- Fonts (matches GrantHarvest brand) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- ─── NAV ──────────────────────────────────────────────────────────────── -->
+<nav>
+  <a href="https://grantharvest.com" class="nav-logo">
+    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 4C20 4 8 12 8 22C8 28.627 13.373 34 20 34C26.627 34 32 28.627 32 22C32 12 20 4 20 4Z" fill="#2D6A4F"/>
+      <path d="M20 12L20 30" stroke="#74C69D" stroke-width="2" stroke-linecap="round"/>
+      <path d="M14 18L20 14L26 18" stroke="#E8C56A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="20" cy="22" r="3" fill="#E8C56A"/>
+    </svg>
+    GrantHarvest
+  </a>
+  <div class="nav-right">
+    <a href="https://grantharvest.com" class="nav-back">← Back to GrantHarvest</a>
+    <a href="https://grantharvest.com/signup" class="nav-cta">Start Free →</a>
+  </div>
+</nav>
+
+<!-- ─── LANDING ───────────────────────────────────────────────────────────── -->
+<section id="landing">
+  <div class="landing-bg"></div>
+  <div class="landing-inner">
+    <div class="landing-badge">🌾 Free Grant Estimator — No Account Required</div>
+
+    <h1 class="landing-headline">
+      How much can<br>your farm <span class="accent">actually get?</span>
+    </h1>
+    <p class="landing-sub">
+      There's over $6 billion in agricultural grants available every year.
+      Answer 7 quick questions and we'll show you exactly which programs
+      you qualify for — and how much you could receive.
+    </p>
+
+    <div class="landing-cta-row">
+      <button class="btn-primary" onclick="startWizard()">
+        Calculate My Grant Potential
+        <span>→</span>
+      </button>
+      <button class="btn-ghost" onclick="document.getElementById('landing').scrollIntoView()">
+        See how it works ↓
+      </button>
+    </div>
+
+    <div class="landing-stats">
+      <div>
+        <div class="landing-stat-num">$6B+</div>
+        <div class="landing-stat-label">Available annually</div>
+      </div>
+      <div>
+        <div class="landing-stat-num">25+</div>
+        <div class="landing-stat-label">Federal programs</div>
+      </div>
+      <div>
+        <div class="landing-stat-num">50</div>
+        <div class="landing-stat-label">States covered</div>
+      </div>
+      <div>
+        <div class="landing-stat-num">2 min</div>
+        <div class="landing-stat-label">To your estimate</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WIZARD ────────────────────────────────────────────────────────────── -->
+<section id="wizard">
+  <div class="wizard-layout">
+
+    <!-- Progress -->
+    <div class="wizard-progress">
+      <div class="progress-header">
+        <div class="progress-label" id="progress-label">Step 1 of 7</div>
+        <div class="progress-tally" id="progress-tally">
+          Estimated: <span id="tally-range">calculating…</span>
+        </div>
+      </div>
+      <div class="progress-steps" id="progress-steps">
+        <div class="progress-track">
+          <div class="progress-track-fill" id="progress-fill" style="width:0%"></div>
+        </div>
+        <div id="step-indicators" style="display:flex;width:100%;position:relative;z-index:1;"></div>
+      </div>
+    </div>
+
+    <!-- Step content -->
+    <div id="step-content"></div>
+
+  </div><!-- /wizard-layout -->
+
+  <!-- Fixed footer nav -->
+  <div class="wizard-footer">
+    <div class="wizard-footer-inner">
+      <button class="btn-back" id="btn-back" onclick="prevStep()" disabled>
+        ← Back
+      </button>
+      <div class="footer-hint" id="footer-hint">Select an option to continue</div>
+      <button class="btn-next" id="btn-next" onclick="nextStep()" disabled>
+        Continue →
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ─── RESULTS ───────────────────────────────────────────────────────────── -->
+<section id="results">
+
+  <!-- Hero -->
+  <div class="results-hero">
+    <div class="results-hero-inner">
+
+      <div class="results-badge" id="results-badge" style="display:none"></div>
+
+      <div class="results-label">Your Estimated Grant Potential</div>
+
+      <div class="results-range">
+        <div class="range-value" id="results-min">$0</div>
+        <div class="range-sep">—</div>
+        <div class="range-value" id="results-max">$0</div>
+      </div>
+
+      <div class="results-meta" id="results-meta">
+        Calculating your matched programs…
+      </div>
+
+      <!-- Stat strip -->
+      <div class="results-stats">
+        <div class="rstat">
+          <div class="rstat-num" id="rstat-federal">—</div>
+          <div class="rstat-label">Federal Programs</div>
+        </div>
+        <div class="rstat">
+          <div class="rstat-num" id="rstat-state">—</div>
+          <div class="rstat-label">State Programs</div>
+        </div>
+        <div class="rstat">
+          <div class="rstat-num" id="rstat-urgent">—</div>
+          <div class="rstat-label">Open Right Now</div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /results-hero -->
+
+  <!-- Urgency banner -->
+  <div class="urgency-banner" id="urgency-banner" style="display:none">
+    <div class="urgency-dot"></div>
+    <span id="urgency-text"></span>
+  </div>
+
+  <!-- Body -->
+  <div class="results-body">
+
+    <!-- State bonus -->
+    <div class="state-bonus-card" id="state-bonus-card"></div>
+
+    <!-- Matched federal programs -->
+    <div class="section-label">Matched Programs</div>
+    <div class="section-title">Your Top Federal Grant Matches</div>
+
+    <div id="grants-container">
+      <!-- Grant cards injected by results.js -->
+    </div>
+
+    <!-- Live grants status -->
+    <div id="live-grants-container">
+      <div class="live-status" id="live-status-text">
+        <span class="live-dot"></span> Checking for live grant data…
+      </div>
+    </div>
+
+    <!-- Lead capture -->
+    <div class="lead-capture">
+      <div class="lead-capture-inner">
+        <div class="lead-eyebrow">Ready to Apply?</div>
+        <div class="lead-title">
+          Find &amp; Write Every Grant<br>
+          <span>With GrantHarvest</span>
+        </div>
+        <p class="lead-sub">
+          Get your full personalized grant report, real-time deadline alerts,
+          and AI-assisted grant writing — all in one platform built for
+          <span id="lead-state-name">your state</span> farmers.
+        </p>
+
+        <div id="lead-form-wrap">
+          <div class="lead-form">
+            <input
+              class="lead-input"
+              type="email"
+              id="capture-email"
+              placeholder="Your email address"
+              onkeydown="if(event.key==='Enter') handleEmailCapture()"
+            >
+            <button class="lead-submit" onclick="handleEmailCapture()">
+              Get My Full Report →
+            </button>
+          </div>
+          <div class="lead-trust">
+            🔒 No spam. We'll send your personalized grant report and show you how to apply.
+          </div>
+        </div>
+
+        <div class="lead-success" id="lead-success">
+          <div class="lead-success-icon">🌱</div>
+          <div class="lead-success-text">
+            You're in! Check your inbox for your personalized grant report.
+          </div>
+          <div style="margin-top:16px">
+            <a href="https://grantharvest.com/signup" class="btn-primary" style="display:inline-flex">
+              Start Finding Grants on GrantHarvest →
+            </a>
+          </div>
+        </div>
+
+      </div><!-- /lead-capture-inner -->
+    </div><!-- /lead-capture -->
+
+    <!-- Retake -->
+    <div style="text-align:center; margin-top:40px">
+      <button class="btn-ghost" onclick="restartWizard()">
+        ← Recalculate with different answers
+      </button>
+    </div>
+
+  </div><!-- /results-body -->
+
+</section>
+
+<!-- ─── FOOTER ────────────────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-brand">GrantHarvest</div>
+  <div class="footer-note">
+    Estimates are based on representative award ranges from USDA, FSA, NRCS, Rural Development,
+    and state agriculture programs. Actual awards depend on application quality, county-level
+    funding availability, and competition. This tool is for informational purposes only.
+    Always verify eligibility directly with the administering agency.
+  </div>
+  <a href="https://grantharvest.com" class="footer-link">grantharvest.com →</a>
+</footer>
+
+<!-- ─── TOAST CONTAINER ───────────────────────────────────────────────────── -->
+<div id="toast-container"></div>
+
+<!-- ─── SCRIPTS (load order matters) ─────────────────────────────────────── -->
+<script src="js/data.js"></script>
+<script src="js/calculator.js"></script>
+<script src="js/wizard.js"></script>
+<script src="js/results.js"></script>
+
+<script>
+  // ── Bootstrap ────────────────────────────────────────────────────────────
+  function startWizard() {
+    document.getElementById('landing').style.display = 'none';
+    document.getElementById('wizard').style.display  = 'block';
+    document.getElementById('wizard').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    initWizard();
+  }
+
+  function restartWizard() {
+    document.getElementById('results').style.display = 'none';
+    document.getElementById('results').classList.remove('active');
+    document.getElementById('landing').style.display = 'flex';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ── Keyboard shortcut: Enter advances wizard ──────────────────────────────
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      const nextBtn = document.getElementById('btn-next');
+      if (nextBtn && !nextBtn.disabled &&
+          document.getElementById('wizard').classList.contains('active')) {
+        nextStep();
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
