@@ -13,3 +13,8 @@ node_modules/
 .vercel/
 .env
 .env.*
+
+# logos
+logos/
+# large downloads / archives (keep the 100MB drive-download zip out of git)
+*.zip
