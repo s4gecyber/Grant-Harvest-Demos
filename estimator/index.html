@@ -828,6 +828,12 @@ footer {
 }
 
 </style>
+<style>
+/* EMBED: auto-height iframe, full-bleed, page-scrollable */
+#landing,#wizard,#results{min-height:0!important;}
+#wizard,#results{padding-top:28px!important;}
+.wizard-footer{position:static!important;backdrop-filter:none!important;}
+</style>
 </head>
 <body>
 
@@ -2824,5 +2830,9 @@ function handleEmailCapture() {
 <!-- Beehiiv attribution — forwards UTM params to the subscribe form for source tracking -->
 <script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
 
+
+<script>
+(function(){function H(){return Math.max(document.body.scrollHeight,document.documentElement.scrollHeight,document.body.offsetHeight,document.documentElement.offsetHeight);}function pH(){try{parent.postMessage({ghEstimatorHeight:H()},'*');}catch(e){}}function pT(){try{parent.postMessage({ghEstimatorScrollTop:true},'*');}catch(e){}}addEventListener('load',pH);addEventListener('resize',pH);if(window.ResizeObserver){try{new ResizeObserver(pH).observe(document.body);}catch(e){}}document.addEventListener('click',function(){setTimeout(pH,60);setTimeout(pH,350);});setInterval(pH,700);var _s=window.scrollTo;window.scrollTo=function(){pT();setTimeout(pH,50);return _s.apply(window,arguments);};})();
+</script>
 </body>
 </html>
