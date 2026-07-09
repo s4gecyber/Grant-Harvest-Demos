@@ -1,0 +1,40 @@
+<!-- ─────────────────────────────────────────────────────────────────────────
+  GrantHarvest — reusable branded email shell
+  Paste into a beehiiv **Custom HTML** block, then Save as a template (My Templates).
+  Swap the {{PLACEHOLDERS}} per email. beehiiv auto-appends the legal
+  unsubscribe / mailing-address footer, so this file does NOT include one.
+  Email-safe: tables + inline styles, 600px, brand fonts with system fallbacks.
+────────────────────────────────────────────────────────────────────────── -->
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#FAF7F0;margin:0;padding:0;">
+  <tr><td align="center" style="padding:24px 12px;">
+    <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:16px;overflow:hidden;border:1px solid #F2EAD8;">
+
+      <!-- Header (swap for beehiiv's brand logo header if you upload the leaf-compass in Settings) -->
+      <tr><td style="background:#1C1408;padding:20px 28px;">
+        <span style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:700;color:#FAF7F0;letter-spacing:.2px;">🌾 GrantHarvest</span>
+      </td></tr>
+
+      <!-- Body copy -->
+      <tr><td style="padding:32px 28px 8px;font-family:'DM Sans',Helvetica,Arial,sans-serif;font-size:16px;line-height:1.62;color:#2D1E0A;">
+        {{BODY}}
+      </td></tr>
+
+      <!-- CTA button -->
+      <tr><td style="padding:6px 28px 30px;" align="left">
+        <table role="presentation" cellpadding="0" cellspacing="0"><tr>
+          <td style="background:#2D6A4F;border-radius:100px;">
+            <a href="{{CTA_URL}}" style="display:inline-block;padding:14px 32px;font-family:'DM Sans',Helvetica,Arial,sans-serif;font-size:15px;font-weight:700;color:#ffffff;text-decoration:none;">{{CTA_TEXT}}</a>
+          </td>
+        </tr></table>
+      </td></tr>
+
+      <!-- Sign-off -->
+      <tr><td style="padding:20px 28px;border-top:1px solid #F2EAD8;font-family:'DM Sans',Helvetica,Arial,sans-serif;font-size:13px;line-height:1.5;color:#8C7B5E;">
+        <strong style="color:#2D6A4F;">Sage Price</strong> — Founder, GrantHarvest<br>
+        Find it. Write it. Win it.<br>
+        <a href="https://grantharvest.ai" style="color:#C8860A;text-decoration:none;">grantharvest.ai</a>
+      </td></tr>
+
+    </table>
+  </td></tr>
+</table>
